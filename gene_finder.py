@@ -10,7 +10,7 @@ import random
 from amino_acids import aa, codons, aa_table   # you may find these useful
 from load import load_seq
 dna_earliest = load_seq("./data/X73525.fa") #import DNA
-print(dna_earliest)
+print("Disclaimer: This takes a few minutes to run")
 
 def shuffle_string(s):
     """Shuffles the characters in the input string
@@ -265,7 +265,6 @@ def coding_strand_to_AA(dna):
     while count < len(dna):
         count = count + 3
         current_codon = dna[count-3:count] #finds next codon
-        #print(current_codon)
         if len(current_codon) == 3: #if the last codon is not a complete codon it won't break it
             amino_acid = aa_table[current_codon] #calculates amino acid from the table
             amino_acids = amino_acids + [amino_acid]
@@ -289,7 +288,7 @@ def gene_finder(dna):
         if len(ORF) > threshold:
             real_dna = real_dna + [coding_strand_to_AA(ORF)] #converts ORF to amino and adds to list
     print("threshold",threshold)
-    print("hello",real_dna)
+    print(real_dna)
     return real_dna
 
 gene_finder(dna_earliest)
